@@ -9,6 +9,36 @@ class Employee {
         this.picture = picture;
     }
 
+    get city() {
+        return this.capitalize(this.address.city);
+    }
+
+    get abbrState() {
+        return this.convertStateName(this.address.state);
+    }
+
+    get birthDay() {
+        const date = this.dob.date;
+        const month = date.substring(5, 7);
+        const day = date.substring(8, 10);
+        const year = date.substring(0, 4)
+
+        return `${month}-${day}-${year}`;
+    }
+
+    get fullAddress() {
+        const street = this.address.street.split(' ').reduce((acc, value) => {
+            return `${acc} ${this.capitalize(value)}`;
+        });
+
+        return `${street}, ${this.capitalize(this.address.city)}, 
+                ${this.convertStateName(this.address.state)} ${this.address.postcode}`;
+    }
+
+    get fullName() {
+        return `${this.capitalize(this.firstName)} ${this.capitalize(this.lastName)}`;
+    }
+
     capitalize(string) {
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     }
@@ -74,33 +104,4 @@ class Employee {
         return this.capitalize(state);
     };
 
-    get city() {
-        return this.capitalize(this.address.city);
-    }
-
-    get abbrState() {
-        return this.convertStateName(this.address.state);
-    }
-
-    get birthDay() {
-        const date = this.dob.date;
-        const month = date.substring(5, 7);
-        const day = date.substring(8, 10);
-        const year = date.substring(0, 4)
-
-        return `${month}-${day}-${year}`;
-    }
-
-    get fullAddress() {
-        const street = this.address.street.split(' ').reduce((acc, value) => {
-            return `${acc} ${this.capitalize(value)}`;
-        });
-
-        return `${street}, ${this.capitalize(this.address.city)}, 
-                ${this.convertStateName(this.address.state)} ${this.address.postcode}`;
-    }
-
-    get fullName() {
-        return `${this.capitalize(this.firstName)} ${this.capitalize(this.lastName)}`;
-    }
 }

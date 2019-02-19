@@ -18,8 +18,12 @@ app.ready.then(() => {
             app.load();
         });
     });
-});
 
-galleryContainer.addEventListener('click', (e) => {
-    console.log(e.target.closest('.card'))
+    galleryContainer.addEventListener('click', (e) => {
+        if (e.target.closest('.card')) {
+            const employeeID = parseInt(e.target.closest('.card').dataset.employeeId);
+            const modal = new Modal(appContainer, app.employeesList);
+            modal.showModal(employeeID);
+        }
+    });
 });
