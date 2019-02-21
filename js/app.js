@@ -26,7 +26,7 @@ app.ready.then(() => {
         });
     });
 
-    // event bubbling - listining for click on employee card
+    // event bubbling - listening for click on employee card
     galleryContainer.addEventListener('click', (e) => {
         // get closest element with class .card
         if (e.target.closest('.card')) {
